@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: app2
-        image: ghcr.io/gor-g/devops-basic-ks8-cluster/flask-app
+        image: ghcr.io/gor-g/devops-basic-ks8-cluster:flask-app-latest
         ports:
         - containerPort: 5000
 ---

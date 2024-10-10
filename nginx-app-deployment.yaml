@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: app1
-        image: ghcr.io/gor-g/devops-basic-ks8-cluster/nginx-app
+        image: ghcr.io/gor-g/devops-basic-ks8-cluster:nginx-app-latest
         ports:
         - containerPort: 80
 ---
