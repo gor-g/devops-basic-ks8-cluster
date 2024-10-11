@@ -15,6 +15,7 @@ spec:
       containers:
       - name: flask-app
         image: ghcr.io/gor-g/devops-basic-ks8-cluster:flask-app-latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
 ---
