@@ -17,7 +17,16 @@ spec:
         image: ghcr.io/gor-g/devops-basic-ks8-cluster:flask-app-latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 5000
+            - containerPort: 5000
+          env:
+            - name: DB_HOST
+              value: pg-service
+            - name: DB_NAME
+              value: mydb
+            - name: DB_USER
+              value: user
+            - name: DB_PASSWORD
+              value: password
 ---
 apiVersion: v1
 kind: Service
