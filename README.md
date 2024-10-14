@@ -25,9 +25,9 @@ Enter the `http://{minikube ip}:30001` (usually it gives `http://192.168.49.2:30
 
 Each time someone accesses this page a log is registered in the database. To see the logs go to `http://{minikube ip}:30001/logs` (`http://192.168.49.2:30001/logs`)
 
-OR Run
+OR, if you are under Windows, Run
 ```bash
-minikube service flask-app-service
+minikube service nginx-app-service
 ```
 
 It will open your browser automatically on the right page. Same thing to access to logs.
