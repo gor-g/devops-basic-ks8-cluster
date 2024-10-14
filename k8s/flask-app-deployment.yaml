@@ -22,11 +22,20 @@ spec:
         - name: DB_HOST
           value: pg-service
         - name: DB_NAME
-          value: mydb
+          valueFrom:
+            secretKeyRef:
+              key: db
+              name: pg-db
         - name: DB_USER
-          value: user
+          valueFrom:
+            secretKeyRef:
+              key: user
+              name: pg-user
         - name: DB_PASSWORD
-          value: password
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: pg-password
       initContainers:
       - name: wait-for-pg
         image: busybox:1.36.1
