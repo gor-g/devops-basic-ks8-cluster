@@ -12,6 +12,10 @@ spec:
       labels:
         app: pg-app
     spec:
+      volumes:
+      - name: pg-data
+        persistentVolumeClaim: 
+          claimName: pg-pvc
       containers:
       - name: pg-app
         image: postgres:13
@@ -38,5 +42,8 @@ spec:
             secretKeyRef:
               key: password
               name: pg-password
+        volumeMounts:
+          - name: pg-data
+            mountPath: "/var/lib/pg"
         ports:
         - containerPort: 5432
