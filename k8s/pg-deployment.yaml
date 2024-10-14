@@ -17,10 +17,19 @@ spec:
         image: postgres:13
         env:
         - name: POSTGRES_DB
-          value: mydb
+          valueFrom:
+            secretKeyRef:
+              key: db
+              name: pg-db
         - name: POSTGRES_USER
-          value: user
+          valueFrom:
+            secretKeyRef:
+              key: user
+              name: pg-user
         - name: POSTGRES_PASSWORD
-          value: password
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: pg-password
         ports:
         - containerPort: 5432
