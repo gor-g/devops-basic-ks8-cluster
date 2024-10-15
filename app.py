@@ -43,8 +43,8 @@ def log_hello_message():
 @app.route('/')
 def hello():
     log_hello_message()  # Log the message to the database
-    return render_template("home.html")
-    # return "Hello from the flask app."
+    # return render_template("home.html")
+    return "Hello from the flask app."
 
 @app.route('/logs')
 def get_logs():
