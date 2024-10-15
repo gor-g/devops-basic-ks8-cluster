@@ -43,6 +43,10 @@ spec:
             secretKeyRef:
               key: password
               name: pg-password
+        livenessProbe:
+          httpGet:
+            path: "/"
+            port: 5000
       initContainers:
       - name: wait-for-pg
         image: busybox:1.36.1
