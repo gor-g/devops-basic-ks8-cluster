@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - name: nginx-app
+        image: ghcr.io/gor-g/devops-basic-ks8-cluster:nginx-app-latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "300m"
+        livenessProbe:
+          httpGet:
+            path: "/"
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          failureThreshold: 3

@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pg-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pg-app
+  template:
+    metadata:
+      labels:
+        app: pg-app
+    spec:
+      volumes:
+      - name: pg-data
+        persistentVolumeClaim: 
+          claimName: pg-pvc
+      containers:
+      - name: pg-app
+        image: postgres:13
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+        env:
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              key: db
+              name: pg-db
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              key: user
+              name: pg-user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: pg-password
+        volumeMounts:
+          - name: pg-data
+            mountPath: "/var/lib/pg"
+        ports:
+        - containerPort: 5432
+        livenessProbe:
+          tcpSocket:
+            port: 5432
+        startupProbe:
+          failureThreshold: 20
+          periodSeconds: 5
+          tcpSocket:
+            port: 5432
