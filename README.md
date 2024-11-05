@@ -27,4 +27,4 @@ minikube ip
 
 Enter the `http://{minikube ip}:30001` (usually it gives `http://192.168.49.2:30001/`)
 
-Each time someone accesses this page a log is registered in the database. To see the logs go to `http://{minikube ip}:30001/logs` (`http://192.168.49.2:30001/logs`)
+**Each time someone accesses this page a log is registered in the database**. To see the logs go to `http://{minikube ip}:30001/logs` (`http://192.168.49.2:30001/logs`)
